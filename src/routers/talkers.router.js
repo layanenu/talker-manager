@@ -12,12 +12,15 @@ router.get('/talker', async (req, res) => {
   }
 });
 
-module.exports = router;
+router.get('/talker/:id', async (req, res) => {
+  const { id } = req.params;
+  const talkersFile = await readFileTalkers();
+  const talkerId = talkersFile.find((talker) => talker.id === Number(id));
 
-// route.get('/talker', async (req, res) => {
-//   const result = await readfile();
-//   try {
-//     res.status(200).json(result);
-//   } catch (err) {
-//     res.status(400).end([]);
-//   }
+  if (!talkerId) {
+    return res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
+  }
+    return res.status(200).json(talkerId);
+});
+
+module.exports = router;
