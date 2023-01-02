@@ -1,5 +1,9 @@
 const express = require('express');
-const { readFileTalkers } = require('../utils/fsUtils');
+const { readFileTalkers, writeFileTalkers } = require('../utils/fsUtils');
+const { validateTalk, validatewatchedAt, validateRate } = require('../middlewares/validateTalk');
+const validateAge = require('../middlewares/validateAge');
+const validateAutorization = require('../middlewares/validateAutorization');
+const validateName = require('../middlewares/validateName');
 
 const router = express.Router();
 
@@ -23,4 +27,14 @@ router.get('/talker/:id', async (req, res) => {
     return res.status(200).json(talkerId);
 });
 
-module.exports = router;
+router.post('/talker', validateAutorization, validateName, validateAge, 
+validateTalk, validatewatchedAt, 
+validateRate, async (req, res) => {
+  const talkersFile = await readFileTalkers();
+  const talkerId = talkersFile.length + 1;
+  const talker = { id: talkerId, ...req.body };
+  await writeFileTalkers(talker);
+  return res.status(201).json(talker);
+});
+
+module.exports = router; 

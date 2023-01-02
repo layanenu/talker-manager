@@ -1,6 +1,5 @@
 const validateEmail = (req, res) => {
   const { email } = req.body;
-  console.log(req.body);
   const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+?$/i;
   const verify = regex.test(email);
   if (!email) {
@@ -13,7 +12,6 @@ const validateEmail = (req, res) => {
 
  const validatePassword = (req, res) => {
   const { password } = req.body;
-
   if (!password) {
     return res.status(400).json({ message: 'O campo "password" é obrigatório' });
   }
@@ -23,7 +21,6 @@ const validateEmail = (req, res) => {
  };
   
  const validateLogin = (req, res, next) => {
-  console.log(req);
   validateEmail(req, res);
   validatePassword(req, res);
   next();

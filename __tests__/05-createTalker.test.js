@@ -395,6 +395,7 @@ describe('5 - Crie o endpoint POST /talker', () => {
       .then((responseLogin) => {
         const { body } = responseLogin;
         const result = JSON.parse(body);
+        console.log(result.token);
         return frisby
           .setup({
             request: {
@@ -430,6 +431,7 @@ describe('5 - Crie o endpoint POST /talker', () => {
       .then((responseLogin) => {
         const { body } = responseLogin;
         const result = JSON.parse(body);
+        console.log(result.token);
         return frisby
           .setup({
             request: {
@@ -447,6 +449,7 @@ describe('5 - Crie o endpoint POST /talker', () => {
           .expect('status', 400)
           .then((responseCreate) => {
             const { json } = responseCreate;
+            console.log(json.message);
             expect(json.message).toBe(
               'O campo "rate" deve ser um inteiro de 1 à 5',
             );
@@ -482,6 +485,7 @@ describe('5 - Crie o endpoint POST /talker', () => {
           .expect('status', 400)
           .then((responseCreate) => {
             const { json } = responseCreate;
+            console.log(json.message);
             expect(json.message).toBe(
               'O campo "rate" deve ser um inteiro de 1 à 5',
             );
