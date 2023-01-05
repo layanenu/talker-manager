@@ -172,6 +172,7 @@ describe('7 - Crie o endpoint DELETE /talker/:id', () => {
           .then((responseCreate) => {
             const { body } = responseCreate;
             resultTalker = JSON.parse(body);
+            console.log(resultTalker);
           });
       });
 

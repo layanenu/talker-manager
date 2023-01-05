@@ -52,31 +52,10 @@ router.delete('/talker/:id', validateAutorization, async (req, res) => {
   const { id } = req.params;
   const talkersFile = await readFileTalkers();
   const talkerId = talkersFile.find((talker) => talker.id === Number(id));
-  talkersFile.splice(talkerId, 1);
-  await writeFileTalkers(talkersFile);
+  const index = talkersFile.indexOf(talkerId);
+  talkersFile.splice(index, 1);
+  await writeFileTalkersArray(talkersFile);
   return res.status(204).end();
 });
 
 module.exports = router; 
-
-// router.delete('/:id', (req, res) => {
-//   const id = Number(req.params.id);
-//   const team = teams.find(t => t.id === id);
-//   if (team) {
-//     const index = teams.indexOf(team);
-//     teams.splice(index, 1);
-//   }
-//   res.sendStatus(200);
-// });
-
-// router.delete('/talker/:id', validateAutorization, async (req, res) => {
-//   const { id } = req.params;
-//   const talkersFile = await readFileTalkers();
-//   const talkerId = talkersFile.find((talker) => talker.id === Number(id));
-//   if (talkerId) {
-//     const index = talkersFile.indexOf(talkerId);
-//     talkersFile.splice(index, 1);
-//     await writeFileTalkers(talkersFile);
-//   } 
-//   return res.status(204).end();
-// });
