@@ -20,7 +20,8 @@ const validatewatchedAt = (req, res, next) => {
 
 const isRateFalseOrNumber = (req, res) => {
   const { talk: { rate } } = req.body;
-  if (!rate) {
+
+  if (rate === undefined) {
     return res.status(400).json({ message: 'O campo "rate" é obrigatório' });
   }
   if (typeof rate !== 'number') {

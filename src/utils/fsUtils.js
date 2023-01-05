@@ -21,8 +21,16 @@ async function writeFileTalkers(newTalker) {
     const oldTalkers = await readFileTalkers();
     const allTalkers = [...oldTalkers, newTalker];
     
-    console.log(newTalker);
+    // console.log(newTalker);
     await fs.writeFile(path.resolve(__dirname, FILE_TALKERS_PATH), JSON.stringify(allTalkers));
+  } catch (error) {
+    console.error(`Erro na escrita do arquivo: ${error}`);
+  }
+}
+
+async function writeFileTalkersArray(newTalkers) {
+  try {
+    await fs.writeFile(path.resolve(__dirname, FILE_TALKERS_PATH), JSON.stringify(newTalkers));
   } catch (error) {
     console.error(`Erro na escrita do arquivo: ${error}`);
   }
@@ -32,4 +40,5 @@ module.exports = {
   readFileTalkers,
   generateToken,
   writeFileTalkers,
+  writeFileTalkersArray,
 };

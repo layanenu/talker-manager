@@ -1,5 +1,5 @@
 const express = require('express');
-const { readFileTalkers, writeFileTalkers } = require('../utils/fsUtils');
+const { readFileTalkers, writeFileTalkers, writeFileTalkersArray } = require('../utils/fsUtils');
 const { validateTalk, validatewatchedAt, validateRate } = require('../middlewares/validateTalk');
 const validateAge = require('../middlewares/validateAge');
 const validateAutorization = require('../middlewares/validateAutorization');
@@ -37,4 +37,46 @@ validateRate, async (req, res) => {
   return res.status(201).json(talker);
 });
 
+router.put('/talker/:id', validateAutorization, validateName, validateAge, 
+validateTalk, validatewatchedAt, validateRate, async (req, res) => {
+  const { id } = req.params;
+  const talkersFile = await readFileTalkers();
+  const talkerId = talkersFile.find((talker) => talker.id === Number(id));
+  talkersFile.splice(talkerId, 1);
+  const talker = { id: talkersFile.length + 1, ...req.body };
+  await writeFileTalkersArray([...talkersFile, talker]);
+  return res.status(200).json(talker);
+});
+
+router.delete('/talker/:id', validateAutorization, async (req, res) => {
+  const { id } = req.params;
+  const talkersFile = await readFileTalkers();
+  const talkerId = talkersFile.find((talker) => talker.id === Number(id));
+  talkersFile.splice(talkerId, 1);
+  await writeFileTalkers(talkersFile);
+  return res.status(204).end();
+});
+
 module.exports = router; 
+
+// router.delete('/:id', (req, res) => {
+//   const id = Number(req.params.id);
+//   const team = teams.find(t => t.id === id);
+//   if (team) {
+//     const index = teams.indexOf(team);
+//     teams.splice(index, 1);
+//   }
+//   res.sendStatus(200);
+// });
+
+// router.delete('/talker/:id', validateAutorization, async (req, res) => {
+//   const { id } = req.params;
+//   const talkersFile = await readFileTalkers();
+//   const talkerId = talkersFile.find((talker) => talker.id === Number(id));
+//   if (talkerId) {
+//     const index = talkersFile.indexOf(talkerId);
+//     talkersFile.splice(index, 1);
+//     await writeFileTalkers(talkersFile);
+//   } 
+//   return res.status(204).end();
+// });
