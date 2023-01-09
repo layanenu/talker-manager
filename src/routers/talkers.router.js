@@ -7,6 +7,25 @@ const validateName = require('../middlewares/validateName');
 
 const router = express.Router();
 
+router.get('/talker/search', validateAutorization, async (req, res) => {
+  try {
+    const { q } = req.query;
+    const talkersFile = await readFileTalkers();
+    const filteredTalker = talkersFile.filter((e) => e.name.includes(q));
+    if (q) {
+      return res.status(200).json(filteredTalker);
+    }
+    if (!q) {
+      return res.status(200).json(talkersFile);
+    }
+    if (!filteredTalker) {
+    return res.status(200).json([]);
+    }
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+});
+
 router.get('/talker', async (req, res) => {
   const talkersFile = await readFileTalkers();
   try {
