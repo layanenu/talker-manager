@@ -3,7 +3,6 @@ Aplicação de cadastro de talkers (palestrantes) em que será possível cadastr
 Desenvolver uma API de um CRUD (Create, Read, Update e Delete) de palestrantes (talkers) e;
 Desenvolver alguns endpoints que irão ler e escrever em um arquivo utilizando o módulo fs.
 
-<br/>
 REQUISITOS
 <br/>
 1 - Crie o endpoint GET /talker<br/>
