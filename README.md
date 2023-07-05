@@ -1,13 +1,19 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+Você irá construir uma aplicação de cadastro de talkers (palestrantes) em que será possível cadastrar, visualizar, pesquisar, editar e excluir informações. Para isso você deverá:
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+Desenvolver uma API de um CRUD (Create, Read, Update e Delete) de palestrantes (talkers) e;
+Desenvolver alguns endpoints que irão ler e escrever em um arquivo utilizando o módulo fs.
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+<br/>
+REQUISITOS
+<br/>
+1 - Crie o endpoint GET /talker<br/>
+2 - Crie o endpoint GET /talker/:id<br/>
+3 - Crie o endpoint POST /login<br/>
+4 - Adicione as validações para o endpoint /login<br/>
+5 - Crie o endpoint POST /talker<br/>
+6 - Crie o endpoint PUT /talker/:id<br/>
+7 - Crie o endpoint DELETE /talker/:id<br/>
+8 - Crie o endpoint GET /talker/search?q=searchTerm
+
+
+
