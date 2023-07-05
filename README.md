@@ -1,4 +1,4 @@
-Você irá construir uma aplicação de cadastro de talkers (palestrantes) em que será possível cadastrar, visualizar, pesquisar, editar e excluir informações. Para isso você deverá:
+Aplicação de cadastro de talkers (palestrantes) em que será possível cadastrar, visualizar, pesquisar, editar e excluir informações. Para isso você deverá:
 
 Desenvolver uma API de um CRUD (Create, Read, Update e Delete) de palestrantes (talkers) e;
 Desenvolver alguns endpoints que irão ler e escrever em um arquivo utilizando o módulo fs.
@@ -15,5 +15,8 @@ REQUISITOS
 7 - Crie o endpoint DELETE /talker/:id<br/>
 8 - Crie o endpoint GET /talker/search?q=searchTerm
 
-
-
+HABILIDADES<br/>
+Node.js<br/>
+Express<br/>
+Middlewares<br/>
+API Rest<br/>
